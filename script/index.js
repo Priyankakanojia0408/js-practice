@@ -1,6 +1,20 @@
 // ---------- Library Array ----------
 let library = [];
 
+
+// ---------- Load saved library from localStorage ----------
+function loadLibrary() {
+  let saved = localStorage.getItem("library");
+  if (saved) {
+    library = JSON.parse(saved);
+  }
+}
+
+// ---------- Save library to localStorage ----------
+function saveLibrary() {
+  localStorage.setItem("library", JSON.stringify(library));
+}
+
 // ---------- Function to Add a Book ----------
 function addBook() {
   let title = prompt("Enter book title:");
@@ -82,6 +96,18 @@ function listUnreadBooks() {
 
   alert("Unread books listed in console.");
 }
+
+
+
+// ---------- Clear all books ----------
+function clearAllBooks() {
+  if (confirm("Are you sure you want to delete all books?")) {
+    library = [];
+    saveLibrary();
+    alert("All books removed!");
+  }
+}
+
 
 // ---------- Menu Loop ----------
 function menu() {
